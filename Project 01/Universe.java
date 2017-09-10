@@ -15,7 +15,7 @@ public class Universe extends JFrame implements ChangeListener {
 	Companion companion;
 	Tutor tutor;
 	Assessor assessor;
-	String authorName = "XYZ";
+	String authorName = "Amit";
 	
 	public Universe() {
 		this.setLayout(new BorderLayout());
@@ -38,7 +38,7 @@ public class Universe extends JFrame implements ChangeListener {
 		
 		companion = new Companion();
 		tutor = new Tutor();
-		assessor = new Assessor(this);
+		assessor = new Assessor();
 		centralPanel.add(companion);
 		centralPanel.add(tutor);
 		centralPanel.add(assessor);
@@ -127,9 +127,9 @@ public class Universe extends JFrame implements ChangeListener {
 	@Override
 	public void stateChanged(ChangeEvent e) {
 		int value = js.getValue();
-		companion.setImage(value);
-		tutor.setContent(value);
-		assessor.setQuestionType(value);
+		companion.changeState(value);
+		tutor.changeState(value);
+		assessor.changeState(value);
 		fourthLabel.setVisible(value == 0 ? true : false);
 		this.revalidate();
 		this.repaint();
