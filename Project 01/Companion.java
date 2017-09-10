@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-public class Companion extends JFrame
+public class Companion extends JPanel
 {
 	private JFrame frame1;
 	
