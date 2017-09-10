@@ -21,6 +21,7 @@ public class Assessor extends JPanel {
 	JPanel txtPanel;
 	String strOption1, strOption2, strOption3, strOption4;
 	FlowLayout flo;
+	String name = "David";
 	
     public Assessor() {
     	
@@ -96,7 +97,7 @@ public class Assessor extends JPanel {
         }
     });
         
-    lblNumber.setText("David Edwards");
+    lblNumber.setText(name);
     
     add(lblNumber);
     }
@@ -109,7 +110,7 @@ public class Assessor extends JPanel {
             removeAll();
             setLayout(new FlowLayout());
             
-            lblNumber.setText("David Edwards");
+            lblNumber.setText(name);
             
             add(lblNumber);
             
