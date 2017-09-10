@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cse360project;
+
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
@@ -12,45 +12,99 @@ import java.awt.*;
  * @author davidedwards
  */
 public class Assessor extends JPanel {
-    
-    JLabel lblNumber = new JLabel();
-    JComboBox cboMenu = new JComboBox();
-    
-    
-    JCheckBox chkOption1 = new JCheckBox();
-    JCheckBox chkOption2 = new JCheckBox();
-    JCheckBox chkOption3 = new JCheckBox();
-    JCheckBox chkOption4 = new JCheckBox();
-    
-    
-    JButton btnOption1 = new JButton();
-    JButton btnOption2 = new JButton();
-    JButton btnOption3 = new JButton();
-    JButton btnOption4 = new JButton();
-    
-    JTextField txtInput = new JTextField();
-    JPanel txtPanel = new JPanel();
-    
-    String strOption1 = new String("Option 1");
-    String strOption2 = new String("Option 2");
-    String strOption3 = new String("Option 3");
-    String strOption4 = new String("Option 4");
-    
-    JButton btnNext = new JButton("Next");
-    
-    
-    JPanel btnPanel = new JPanel();
-    JPanel cboPanel = new JPanel();
-    JPanel rdbPanel = new JPanel();
-    
-    FlowLayout flo = new FlowLayout();
+	JLabel lblNumber;
+	JComboBox<String> cboMenu;
+	JCheckBox chkOption1, chkOption2, chkOption3, chkOption4;
+	JButton btnOption1, btnOption2, btnOption3, btnOption4;
+	JPanel btnPanel, cboPanel, rdbPanel;
+	JTextField txtInput;
+	JPanel txtPanel;
+	String strOption1, strOption2, strOption3, strOption4;
+	FlowLayout flo;
+	
     public Assessor() {
+    	
+    	strOption1 = new String("Option 1");
+        strOption2 = new String("Option 2");
+        strOption3 = new String("Option 3");
+        strOption4 = new String("Option 4");
         
         
-        Dimension minimumSize = new Dimension(300,300);
-        setPreferredSize(minimumSize);
+    	lblNumber = new JLabel();
+        cboMenu = new JComboBox<String>();
+        cboMenu.addItem(strOption1);
+        cboMenu.addItem(strOption2);
+        cboMenu.addItem(strOption3);
+        cboMenu.addItem(strOption4);
         
-        if (state.getState() == 0) {
+        chkOption1 = new JCheckBox();
+        chkOption2 = new JCheckBox();
+        chkOption3 = new JCheckBox();
+        chkOption4 = new JCheckBox();
+        
+        
+        btnOption1 = new JButton();
+        btnOption2 = new JButton();
+        btnOption3 = new JButton();
+        btnOption4 = new JButton();
+        
+        txtInput = new JTextField();
+        txtPanel = new JPanel();
+        
+        
+        
+        btnPanel = new JPanel();
+        cboPanel = new JPanel();
+        rdbPanel = new JPanel();
+        
+        flo = new FlowLayout();
+        
+        cboMenu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cboMenuActionPerformed(e);
+            }
+        });
+    
+    
+    
+    btnOption1.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            btnOption1ActionPerformed(e);
+        }
+    });
+    
+    btnOption2.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            btnOption2ActionPerformed(e);
+        }
+    });
+    
+    btnOption3.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            btnOption3ActionPerformed(e);
+        }
+    });
+    
+    btnOption4.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            btnOption4ActionPerformed(e);
+        }
+    });
+        
+    lblNumber.setText("David Edwards");
+    
+    add(lblNumber);
+    }
+	
+    public void changeState(int state) {
+        
+        
+        if (state == 0) {
             
             removeAll();
             setLayout(new FlowLayout());
@@ -61,21 +115,18 @@ public class Assessor extends JPanel {
             
         }
         
-        if (state.getState() == 1) {
+        if (state == 1) {
             
             //clear the component field
             removeAll();
-            cboPanel.removeAll();
+            //cboPanel.removeAll();
             
             //set the panel layouts
             setLayout(new GridLayout(2,1));
             cboPanel.setLayout(flo);
             
             //populate list for cboMenu
-            cboMenu.addItem(strOption1);
-            cboMenu.addItem(strOption2);
-            cboMenu.addItem(strOption3);
-            cboMenu.addItem(strOption4);
+            
             
             cboMenu.setSelectedItem(strOption1);
             
@@ -88,7 +139,7 @@ public class Assessor extends JPanel {
             
         }
         
-        if (state.getState() == 2) {
+        if (state == 2) {
             
             //clear the component field
             removeAll();
@@ -118,14 +169,11 @@ public class Assessor extends JPanel {
             rdbPanel.add(chkOption3);
             rdbPanel.add(chkOption4);
             
-            //add btnNext to the JPanel
-            btnPanel.add(btnNext);
-            
             add(rdbPanel);
             add(btnPanel);
         }
         
-        if (state.getState() == 3) {
+        if (state == 3) {
             
             //remove components that may be on the panels
             removeAll();
@@ -157,7 +205,7 @@ public class Assessor extends JPanel {
             add(btnPanel);
         }
         
-        if (state.getState() == 4) {
+        if (state == 4) {
             
             //remove components
             removeAll();
@@ -178,92 +226,48 @@ public class Assessor extends JPanel {
             txtInput.setPreferredSize(new Dimension(150, 27));
             
             txtPanel.add(txtInput);
-            btnPanel.add(btnNext);
             
             add(lblNumber);
             add(txtPanel);
             add(btnPanel);
         }
-        cboMenu.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    cboMenuActionPerformed(e);
-                }
-            });
         
-        btnNext.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                btnNextActionPerformed(e);
-            }
-        });
-        
-        btnOption1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                btnOption1ActionPerformed(e);
-            }
-        });
-        
-        btnOption2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                btnOption2ActionPerformed(e);
-            }
-        });
-        
-        btnOption3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                btnOption3ActionPerformed(e);
-            }
-        });
-        
-        btnOption4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                btnOption4ActionPerformed(e);
-            }
-        });
     }
     
     private void btnOption4ActionPerformed(ActionEvent e) {
         
-        JOptionPane.showMessageDialog(this, "Hello!");
+        JOptionPane.showMessageDialog(this, "Opt4!");
     }
     
     private void btnOption3ActionPerformed(ActionEvent e) {
         
         
-        JOptionPane.showMessageDialog(this, "Hello!");
+        JOptionPane.showMessageDialog(this, "Opt3!");
     }
     
     private void btnOption2ActionPerformed(ActionEvent e) {
         
         
-        JOptionPane.showMessageDialog(this, "Hello!");
+        JOptionPane.showMessageDialog(this, "Opt2!");
     }
     
     private void btnOption1ActionPerformed(ActionEvent e) {
         
         
-        JOptionPane.showMessageDialog(this, "Hello!");
+        JOptionPane.showMessageDialog(this, "Opt1!");
     }
     
     private void btnNextActionPerformed(ActionEvent e) {
         
-        JOptionPane.showMessageDialog(this, "Hello!");    
+        JOptionPane.showMessageDialog(this, "Next!");    
     }
     
     
     
     private void cboMenuActionPerformed(ActionEvent evt) {
         
-        JOptionPane.showMessageDialog(this, "Hello!");}
+        JOptionPane.showMessageDialog(this, "Menu!");
+        }
     
-    public void changeState(int s) {
-        
-        state.changeState(s);
-    }
     
 }
