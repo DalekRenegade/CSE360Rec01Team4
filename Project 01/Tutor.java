@@ -21,6 +21,7 @@ public class Tutor extends JPanel{
 
     public Tutor() {
         this.setLayout(new BorderLayout());
+        this.setBorder(BorderFactory.createCompoundBorder(new EmptyBorder(10, 10, 10, 10), new LineBorder(Color.BLACK, 3)));
         nameLabel = new JLabel(name, SwingConstants.CENTER);
         jep = new JEditorPane();
         jep.setEditable(false);
