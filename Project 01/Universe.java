@@ -14,6 +14,7 @@ import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.event.*;
 import javax.swing.plaf.*;
+import javax.swing.plaf.basic.BasicSliderUI;
 import javax.swing.plaf.metal.MetalSliderUI;
 
 public class Universe extends JFrame implements ChangeListener {
@@ -81,10 +82,11 @@ public class Universe extends JFrame implements ChangeListener {
 		js.setPaintLabels(true);
 		js.setSnapToTicks(true);
 		setJsliderSize();
-		/**Slider (parent - MetalSliderUI)
+		/**Slider (parent - BasicSliderUI)
 		 * Clicking on the horizontal  event  
+		 * Due to inconsistency in code between Mac and Windows regarding MetalSliderUI class, we switched to BasicSliderUI
 		 */
-		js.setUI(new MetalSliderUI() {
+		js.setUI(new BasicSliderUI(js) {
 			/**Clicking anywhere on the slider horizontal bar will invoke this function
 			 * Sets the slider thumb to always move to the nearest tick
 			 */
@@ -175,13 +177,15 @@ public class Universe extends JFrame implements ChangeListener {
                 Font font = new Font(f.getFontName(), orig.getStyle(), f.getSize());
                 UIManager.put(key, new FontUIResource(font));
             }
-            //Change the default background color of all the Panels, ComboBoxes and CheckBoxes
+            //Change the default background color of all the Panels, ComboBoxes, CheckBoxes and the border of BasicSliderUI
             else if((value instanceof ColorUIResource) && 
             		((key.toString() == "Panel.background") 
             		|| (key.toString() == "Combobox.background")
-            		|| (key.toString() == "CheckBox.background"))) {
+            		|| (key.toString() == "CheckBox.background")
+            		|| (key.toString() == "Slider.focus"))) {
             	UIManager.put(key,  new ColorUIResource(defaultColor));
             }
+            
         }
     }
 	
