@@ -1,5 +1,5 @@
 /**
- * Universe.java
+ * Companion.java
  * Recitation Project # 01
  * Recitation Group #01 Team #04 
  * @author Tyler Wong
