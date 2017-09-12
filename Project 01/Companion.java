@@ -3,6 +3,8 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 public class Companion extends JPanel
 {
@@ -14,15 +16,20 @@ public class Companion extends JPanel
 	
 	public Companion() 
 	{		
-		lbl = new JLabel(name, SwingConstants.CENTER);
 		this.setLayout(new BorderLayout());
+		this.setBorder(BorderFactory.createCompoundBorder(new EmptyBorder(10, 10, 10, 10), new LineBorder(Color.BLACK, 3)));
+		lbl = new JLabel(name, SwingConstants.CENTER);
 		state = 0;
 		images = new ImageIcon[4];
 
-		images[0] = new ImageIcon("resources//Happy.png");
-		images[1] = new ImageIcon("resources//Thinking.png");
-		images[2] = new ImageIcon("resources//Worry.png");
-		images[3] = new ImageIcon("resources//Sorry.png");
+		try {
+			images[0] = new ImageIcon("resources//Happy.png");
+			images[1] = new ImageIcon("resources//Thinking.png");
+			images[2] = new ImageIcon("resources//Worry.png");
+			images[3] = new ImageIcon("resources//Sorry.png");
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 		this.add(lbl);
 		this.addComponentListener(new ComponentAdapter() {
 			public void componentResized(ComponentEvent e) {
