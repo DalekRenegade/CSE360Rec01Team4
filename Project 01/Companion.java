@@ -19,11 +19,13 @@ public class Companion extends JPanel
 	
 	public Companion() 
 	{
+		//sets layout and border for the panel
 		this.setLayout(new BorderLayout());
 		this.setBorder(BorderFactory.createCompoundBorder(new EmptyBorder(10, 10, 10, 10), new LineBorder(Color.BLACK, 3)));
 		lbl = new JLabel(name, SwingConstants.CENTER);
 		images = new ImageIcon[4];
 
+		//Load images from local files into memory
 		try {
 			images[0] = new ImageIcon("resources//Happy.png");
 			images[1] = new ImageIcon("resources//Thinking.png");
@@ -32,8 +34,11 @@ public class Companion extends JPanel
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		this.add(lbl);
+		this.add(lbl);	//add the label (with name) to the panel
 		this.addComponentListener(new ComponentAdapter() {
+			/**listener for when the frame is resized and subsequently the panel is resized
+			*  resizes the corresponding image/text based on the state of the slider
+			*/
 			public void componentResized(ComponentEvent e) {
 				if(state > 0 && images[state - 1] != null)
 					lbl.setIcon(new ImageIcon(getScaledImage(e.getComponent().getWidth(), e.getComponent().getHeight())));
@@ -42,7 +47,7 @@ public class Companion extends JPanel
 			}
 		});
 	}
-	
+	//update the panel with name or respective image 
 	public void changeState(int state)
 	{
 		this.state = state;
@@ -60,7 +65,7 @@ public class Companion extends JPanel
 			lbl.setText(name);
 		this.revalidate();
 	}
-	
+	//returns the scaled image, maintaining the original aspect ratio of the image
 	private Image getScaledImage(int boundaryWidth, int boundaryHeight) {
 		ImageIcon imgIcon = images[state - 1];
 		Image scaledImg = null;
