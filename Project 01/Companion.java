@@ -12,14 +12,12 @@ public class Companion extends JPanel
 	private JLabel lbl;
 	
 	private ImageIcon[] images;
-	int state;
 	
 	public Companion() 
 	{		
 		this.setLayout(new BorderLayout());
 		this.setBorder(BorderFactory.createCompoundBorder(new EmptyBorder(10, 10, 10, 10), new LineBorder(Color.BLACK, 3)));
 		lbl = new JLabel(name, SwingConstants.CENTER);
-		state = 0;
 		images = new ImageIcon[4];
 
 		try {
@@ -40,12 +38,11 @@ public class Companion extends JPanel
 	
 	public void changeState(int state)
 	{
-		this.state = state;
 		lbl.setIcon(null);
 		lbl.setText(null);
 		
 		if(state > 0) {
-			ImageIcon imgIcon = new ImageIcon(getScaledImage(this.getWidth(), this.getHeight()));
+			ImageIcon imgIcon = new ImageIcon(getScaledImage(this.getWidth(), this.getHeight(), state));
 			if(imgIcon != null && imgIcon.getIconWidth() > 0)
 				lbl.setIcon(imgIcon);
 			else
@@ -56,7 +53,7 @@ public class Companion extends JPanel
 		this.revalidate();
 	}
 	
-	private Image getScaledImage(int boundaryWidth, int boundaryHeight) {
+	private Image getScaledImage(int boundaryWidth, int boundaryHeight, int state) {
 		ImageIcon imgIcon = images[state - 1];
 		Image scaledImg = null;
 		int newWidth = imgIcon.getIconWidth();
