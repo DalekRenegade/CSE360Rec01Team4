@@ -28,6 +28,7 @@ public class Universe extends JFrame implements ChangeListener {
 	
 	public Universe() {
 		//Set layout, default actions and background
+		super("Interactive Tutor");
 		this.setLayout(new BorderLayout());
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setBackground(Color.WHITE);
