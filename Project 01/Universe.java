@@ -1,264 +1,198 @@
 /**
- * This is the Assessor class
- * It displays the input options for the user
- * during operation of the virtual tutor program
- * 
- */
-/**
- *
- * @author David Edwards
- * cse360
- * recitation project 1
- * team 4
- * Submitted: 9/11/2017
+ * Universe.java
+ * Recitation Project # 01
+ * Recitation Group #01 Team #04 
+ * @author Amit Ranjan
  */
 package edu.asu.CSE360._01._04;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Enumeration;
+
+import javax.sound.midi.SoundbankResource;
 import javax.swing.*;
 import javax.swing.border.*;
-import java.awt.event.*;
-import java.awt.image.BufferedImage;
-import java.awt.*;
+import javax.swing.event.*;
+import javax.swing.plaf.*;
+import javax.swing.plaf.metal.MetalSliderUI;
 
-public class Assessor extends JPanel {
-    
-    JLabel lblQuestion, lblName;
-    JComboBox<String> cboMenu;
-    JPanel btnPanel, cboPanel, rdbPanel;
-    JTextField txtInput;
-    JPanel txtPanel;
-    String name = "David";
-	String options[];
-	String question;
-	JCheckBox[] chkOptions;
-	JButton[] btnOptions;
-        
-    //default constructor
-    public Assessor() {
-    	
-    	//initialize question and string text
-    	question = "What is the value of 11+12+11 ?";
-    	options = new String[4];
-    	options[0] = "Thirty four";
-		options[1] = "Thirty five";
-		options[2] = "Thirty nine";
-		options[3] = "Thirty three";
+public class Universe extends JFrame implements ChangeListener {
+	
+	JSlider js;
+	JPanel centralPanel, sliderPanel, fourthPanel;
+	JLabel fourthLabel;
+	Companion companion;
+	Tutor tutor;
+	Assessor assessor;
+	String authorName = "Amit";
+	
+	public Universe() {
+		//Set layout, default actions and background
+		this.setLayout(new BorderLayout());
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setBackground(Color.WHITE);
 		
-		//set layout and border for the panel
-		setLayout(new BorderLayout());
-		setBorder(BorderFactory.createCompoundBorder(new EmptyBorder(10, 10, 10, 10), new LineBorder(Color.BLACK, 3)));
-    	
-		//initialize JPanels
-        txtPanel = new JPanel();       
-        btnPanel = new JPanel();
-        cboPanel = new JPanel();
-        rdbPanel = new JPanel();
-        
-        //set layouts for the panels
-        cboPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        rdbPanel.setLayout(new BoxLayout(rdbPanel, BoxLayout.Y_AXIS));
-		btnPanel.setLayout(new BoxLayout(btnPanel, BoxLayout.Y_AXIS));
-		txtPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        
-        //initialize question label
-        lblQuestion = new JLabel(question);
-        lblName = new JLabel(name, SwingConstants.CENTER);
-        
-        cboMenu = new JComboBox<String>(options);
-        cboMenu.setRenderer(new ComboBoxRenderer("Select"));	//change the default renderer of the ComboBox
-        cboMenu.setSelectedIndex(-1);	//set default text as the current index
-        cboMenu.addActionListener(new ActionListener() {
-        	//invoked when the combobox item is selected
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int selectedIndex = cboMenu.getSelectedIndex();
-				if(selectedIndex >= 0)
-					displayDialog(cboMenu.getItemAt(selectedIndex));
-			}
-		});
-		cboPanel.add(cboMenu);
+		//Initialize fourth panel with its layout, border
+		fourthPanel = new JPanel();
+		fourthPanel.setLayout(new BorderLayout());
+		fourthPanel.setBackground(Color.WHITE);
+		fourthPanel.setBorder(BorderFactory.createCompoundBorder(new EmptyBorder(10, 10, 10, 10), new LineBorder(Color.BLACK, 3)));
+		fourthLabel = new JLabel(authorName, SwingConstants.CENTER);
+		fourthPanel.add(fourthLabel);
 		
-		chkOptions = new JCheckBox[options.length];
-		btnOptions = new JButton[options.length];
+		//Central panel which contains the sub-panels in a grid layout 
+		centralPanel = new JPanel();
+		centralPanel.setLayout(new GridLayout(2, 2));
+		centralPanel.setBackground(Color.WHITE);
 		
-		for(int i=0; i< options.length; i++) {
-			chkOptions[i] = new JCheckBox(options[i]);
-			rdbPanel.add(chkOptions[i]);
-			scaleCheckBoxIcon(chkOptions[i]);	//scale CheckBox to size according to the current viewport
-			//action listener to the checkbox to respond to user's action
-			chkOptions[i].addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					/**allows for multiple options to be selected by the user.
-					 * Thus, it iterates through the CheckBoxes and concatenates the answer(s) selected by the user
-					 */
-					String answers = "";
-					for (JCheckBox jCheckBox : chkOptions) {
-						if(jCheckBox.isSelected())
-							answers += jCheckBox.getText() + "\n";
-					}
-					if(answers != "")
-						displayDialog(answers);
-				}
-			});
-			
-			btnOptions[i] = new JButton(options[i]);
-			btnPanel.add(Box.createVerticalStrut(15));	//add a vertical spacing between the buttons in the box layout
-			btnPanel.add(btnOptions[i]);
-			//button clicked event listener which responds when a button is pressed by the user
-			btnOptions[i].addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					displayDialog(e.getActionCommand());
-				}
-			});
-		}
+		initializeSlider();								//Initialize the slider
+		this.add(centralPanel, BorderLayout.CENTER);	//Add the central panel to the center of the frame
+		this.add(sliderPanel, BorderLayout.SOUTH);		//Add the slider panel to the bottom of the frame
 		
-		//initialize the TextField and adds an action listener to it that responds when user presses the Enter key
-		txtInput = new JTextField();
-		txtInput.setBorder(new LineBorder(Color.BLACK, 3));
-		txtInput.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				displayDialog(txtInput.getText());
-			}
-		});
-		txtPanel.add(txtInput);
-		this.add(lblName);
+		//Initialize the companion, tutor and assessor panels. Add these and the 4th panel to the central panel
+		companion = new Companion();
+		tutor = new Tutor();
+		assessor = new Assessor();
+		centralPanel.add(companion);
+		centralPanel.add(tutor);
+		centralPanel.add(assessor);
+		centralPanel.add(fourthPanel);
 		
+		//Add an event listener which responds to the JFrame being resized 
 		this.addComponentListener(new ComponentAdapter() {
-			/**invoked when the size of the parent frame changes and subsequently the size of the Assessor panel changes
-			 * changes the font size of the JLabels, ComboBox, CheckBoxes, JButtons and JTextField
-			 */
 			public void componentResized(ComponentEvent e) {
-				int width = e.getComponent().getWidth();
-				int height = e.getComponent().getHeight();
-				lblName.setFont(lblName.getFont().deriveFont((width + height)/15f));
-				lblQuestion.setFont(lblQuestion.getFont().deriveFont((width + height)/40f));
-				cboMenu.setFont(cboMenu.getFont().deriveFont((width + height)/40f));
-				cboMenu.setSize(new Dimension(width - 100, cboMenu.getHeight()));
-				for (JCheckBox jcb : chkOptions) {
-					jcb.setFont(jcb.getFont().deriveFont((width + height)/40f));
-					scaleCheckBoxIcon(jcb);		//Scale CheckBoxes as per the size of the parent
-				}
-				for (JButton jb : btnOptions)
-					jb.setFont(jb.getFont().deriveFont((width + height)/40f));
-				txtInput.setFont(txtInput.getFont().deriveFont((width + height)/40f));
-				txtInput.setPreferredSize(new Dimension(width - 80, 80));	//change the width of the TextField as per the width of the panel
-		}
-	});
-    }
-    
-    private void displayDialog(String answer) {
-		JOptionPane.showMessageDialog(this, "Your answer :- \n" + answer, "Message", JOptionPane.INFORMATION_MESSAGE);
+				setJsliderSize();	//Change the size of the slider and its components as per the size of the frame
+				//Change the size of the font of the 4th label as the frame is resized 
+				fourthLabel.setFont(fourthLabel.getFont().deriveFont((fourthPanel.getWidth() + fourthPanel.getHeight())/15f));
+			}
+		});
 	}
 	
-    /**
-     * changeState performs the state operations based on the 
-     * input parameter state
-     * @param state 
-     */
-    public void changeState(int state) {
-    	//clear the JPanel's components
-    	this.removeAll();
-    	//check the state's value for 0
-		if(state == 0)
-			this.add(lblName);
-		else {
-			//add question to the panel in the border layout
-			this.add(lblQuestion,BorderLayout.NORTH);
-			//based on the state, the corresponding panel is added to the Assessor panel
-			if(state == 1) {
-				this.add(cboPanel);
-				cboMenu.setSelectedIndex(-1);
-			}
-			else if(state == 2) {
-				for (JCheckBox jcb : chkOptions)
-					jcb.setSelected(false);
-				this.add(rdbPanel);
-			}
-			else if(state == 3) {
-				this.add(btnPanel);
-			}
-			else if(state == 4) {
-				txtInput.setText("");
-				this.add(txtPanel);
-			}
-		}
+	private void initializeSlider() {
+		
+		sliderPanel = new JPanel();
+		
+		//Initialize default slider and repaint it to obtain the custom slider 
+		js = new JSlider(JSlider.HORIZONTAL, 0, 4, 0);
+		js.setBackground(Color.WHITE);
+		js.setMajorTickSpacing(1);
+		js.setPaintTicks(true);
+		js.setPaintLabels(true);
+		js.setSnapToTicks(true);
+		setJsliderSize();
+		/**Slider (parent - MetalSliderUI)
+		 * Clicking on the horizontal  event  
+		 */
+		js.setUI(new MetalSliderUI() {
+			/**Clicking anywhere on the slider horizontal bar will invoke this function
+			 * Sets the slider thumb to always move to the nearest tick
+			 */
+		    protected void scrollDueToClickInTrack(int direction) {
+		        int value = slider.getValue(); 
+		        if (slider.getOrientation() == JSlider.HORIZONTAL) {
+		            value = this.valueForXPosition(slider.getMousePosition().x);
+		        } else if (slider.getOrientation() == JSlider.VERTICAL) {
+		            value = this.valueForYPosition(slider.getMousePosition().y);
+		        }
+		        slider.setValue(value);
+		    }
+		    
+		    /**Paints the slider and the thumb to resize them as per the size of the frame
+		     * Custom slider is painted because of the size and view problems arising due to high screen resolution
+		     */
+		    @Override
+		    public void paintTrack(Graphics g) {
+		        Graphics2D g2d = (Graphics2D) g;
+		        Rectangle r = trackRect;
+		        r.height = 20;
+		        g2d.setPaint(new Color(192,192,192));
+		        g2d.fill(r);
+		    }
+		    
+		    @Override
+		    public void paintThumb(Graphics g) {
+		        Graphics2D g2d = (Graphics2D) g;
+		        int n = 4;
+		        int[] x = new int[n];
+		        int[] y = new int[n];
+		        
+		        int rectX = thumbRect.x;
+		        int rectY = thumbRect.y;
+		        
+		        x[0] = rectX - 5;	//Left bottom
+		        x[1] = rectX - 5;	//Left top
+		        x[2] = rectX + 20;	//Right top
+		        x[3] = rectX + 20;	//Right bottom
+		        
+		        y[0] = rectY - 10;	//Left bottom
+		        y[1] = rectY + 20;	//Left top
+		        y[2] = rectY + 20;	//Right bottom
+		        y[3] = rectY - 10;	//Right top
+		        
+		        Polygon poly = new Polygon(x, y, n);
+		        g2d.setPaint(Color.GREEN);
+		        g2d.fill(poly);
+		    }
+		});
+		sliderPanel.add(js);		//Adding slider to the frame
+		js.addChangeListener(this);	//Adding slider change listener
 	}
-    
-    /**
-     * Action event method for the ComboBox
-     * These perform the necessary operations when the value in a ComboBox is clicked
-     */ 
-    private void cboMenuActionPerformed(ActionEvent evt) {
-    	int selectedIndex = cboMenu.getSelectedIndex();
-		if(selectedIndex >= 0)
-			JOptionPane.showMessageDialog(this, cboMenu.getItemAt(selectedIndex));
-    }
-    
-    /**Due to high screen resolution, the CheckBoxes are so small that it is not visible properly
-     * On top of that, when the application is resized, its size is not consistent with other elements
-     * Therefore, to handle this scenario, we have included the code to scale the CheckBoxes w.r.t. the Frame
-     * This code snippet has been taken from stackoverflow
-     * Reference: https://stackoverflow.com/questions/4770022/make-jcheckbox-bigger#answer-26995048
-     * @param checkbox
-     */
- 	public static void scaleCheckBoxIcon(JCheckBox checkbox){
- 	    boolean previousState = checkbox.isSelected();
- 	    checkbox.setSelected(false);
- 	    FontMetrics boxFontMetrics =  checkbox.getFontMetrics(checkbox.getFont());
- 	    Icon boxIcon = UIManager.getIcon("CheckBox.icon");
- 	    BufferedImage boxImage = new BufferedImage(
- 	        boxIcon.getIconWidth(), boxIcon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
- 	    Graphics graphics = boxImage.createGraphics();
- 	    try{
- 	        boxIcon.paintIcon(checkbox, graphics, 0, 0);
- 	    }finally{
- 	        graphics.dispose();
- 	    }
- 	    ImageIcon newBoxImage = new ImageIcon(boxImage);
- 	    Image finalBoxImage = newBoxImage.getImage().getScaledInstance(
- 	        boxFontMetrics.getHeight(), boxFontMetrics.getHeight(), Image.SCALE_SMOOTH);
- 	    checkbox.setIcon(new ImageIcon(finalBoxImage));
+	
+	//Changes the width of the slider horizontal bar when the size of the Frame changes
+	private void setJsliderSize() {
+		Dimension dim;
+		if(this.isVisible())
+			dim = new Dimension(this.getWidth() - 200, 200);
+		else
+			dim = new Dimension(500, 200);
+		if(js!=null)
+			js.setPreferredSize(dim);
+		js.revalidate();
+	}
 
- 	    checkbox.setSelected(true);
- 	    Icon checkedBoxIcon = UIManager.getIcon("CheckBox.icon");
- 	    BufferedImage checkedBoxImage = new BufferedImage(
- 	        checkedBoxIcon.getIconWidth(),  checkedBoxIcon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
- 	    Graphics checkedGraphics = checkedBoxImage.createGraphics();
- 	    try{
- 	        checkedBoxIcon.paintIcon(checkbox, checkedGraphics, 0, 0);
- 	    }finally{
- 	        checkedGraphics.dispose();
- 	    }
- 	    ImageIcon newCheckedBoxImage = new ImageIcon(checkedBoxImage);
- 	    Image finalCheckedBoxImage = newCheckedBoxImage.getImage().getScaledInstance(boxFontMetrics.getHeight(), boxFontMetrics.getHeight(), Image.SCALE_SMOOTH);
- 	    checkbox.setSelectedIcon(new ImageIcon(finalCheckedBoxImage));
- 	    checkbox.setSelected(false);
- 	    checkbox.setSelected(previousState);
- 	}
-    
- 	/**Since ComboBox does not allow a default text (or selection of -1 index) by default,
- 	 * we are creating a custom ListcellRenderer for the ComboBox and overriding the default one.
- 	 * It allows us to set a default text 'title' for the ComboBox.
- 	 */
-    class ComboBoxRenderer extends JLabel implements ListCellRenderer
-    {
-        private String title;
-
-        public ComboBoxRenderer(String title) {
-            this.title = title;
-        }
-
-        //Overrides the default rendering operation for the component with a custom one
-        @Override
-        public Component getListCellRendererComponent(JList list, Object value,
-                int index, boolean isSelected, boolean hasFocus)
-        {
-            if (index == -1 && value == null) setText(title);
-            else setText(value.toString());
-            return this;
+	//Invoked when the slider position changes - includes changing the state of panels as per slider
+	@Override
+	public void stateChanged(ChangeEvent e) {
+		int value = js.getValue();
+		companion.changeState(value);
+		tutor.changeState(value);
+		assessor.changeState(value);
+		fourthPanel.setVisible(value == 0 ? true : false);
+		this.revalidate();
+		this.repaint();
+	}
+	
+	public static void setUIDefaults(FontUIResource f, Color defaultColor) {
+		//Enumerate all the components from the UI manager and perform common operation on those keys
+        Enumeration<Object> keys = UIManager.getDefaults().keys();
+        while (keys.hasMoreElements()) {
+            Object key = keys.nextElement();
+            Object value = UIManager.get(key);
+            //Change the default font for all the components
+            if (value instanceof FontUIResource) {
+                FontUIResource orig = (FontUIResource) value;
+                Font font = new Font(f.getFontName(), orig.getStyle(), f.getSize());
+                UIManager.put(key, new FontUIResource(font));
+            }
+            //Change the default background color of all the Panels, ComboBoxes and CheckBoxes
+            else if((value instanceof ColorUIResource) && 
+            		((key.toString() == "Panel.background") 
+            		|| (key.toString() == "Combobox.background")
+            		|| (key.toString() == "CheckBox.background"))) {
+            	UIManager.put(key,  new ColorUIResource(defaultColor));
+            }
         }
     }
-    
+	
+	public static void main(String[] args) {
+		//Change the default UI layout of the components
+		setUIDefaults(new FontUIResource(new Font("Serif", Font.BOLD, 30)), Color.WHITE);
+		//Initialize Universe object and display the window
+		Universe u = new Universe();
+		u.setMinimumSize(new Dimension(1000, 1000));
+		u.setSize(1000, 1000);
+		u.pack();
+		u.setVisible(true);
+	}
+
 }
