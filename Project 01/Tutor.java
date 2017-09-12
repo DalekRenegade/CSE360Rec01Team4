@@ -6,10 +6,11 @@
  * @author Gary Chen
  * @version latest
  */
+package edu.asu.CSE360._01._04;
 import javax.swing.*;
+import javax.swing.border.*;
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+import java.awt.event.*;
 import java.io.*;
 
 
@@ -20,6 +21,7 @@ public class Tutor extends JPanel{
     JScrollPane scrollPane;
 
     public Tutor() {
+    	//sets layout and border for the panel
         this.setLayout(new BorderLayout());
         this.setBorder(BorderFactory.createCompoundBorder(new EmptyBorder(10, 10, 10, 10), new LineBorder(Color.BLACK, 3)));
         nameLabel = new JLabel(name, SwingConstants.CENTER);
