@@ -110,6 +110,11 @@ public class Companion extends JPanel implements Runnable
 	 */
 	//returns the scaled image, maintaining the original aspect ratio of the image
 	private Image getScaledImage(int boundaryWidth, int boundaryHeight) {
+		//Issue on a Mac system - zoom level goes beyond the threshold
+		if(zoomLevel < 1.0f || zoomLevel > 2.0f) {
+			zoomLevel = 1.0f;
+			zoomFactor = 0.25f;
+		}
 		ImageIcon imgIcon = images[state - 1];
 		int newWidth = imgIcon.getIconWidth();
 		int newHeight = imgIcon.getIconHeight();
