@@ -187,6 +187,7 @@ public class Universe extends JFrame implements ChangeListener {
         while (keys.hasMoreElements()) {
             Object key = keys.nextElement();
             Object value = UIManager.get(key);
+            String valueString = "" + value;
             //Change the default font for all the components
             if (value instanceof FontUIResource) {
                 FontUIResource orig = (FontUIResource) value;
@@ -195,6 +196,14 @@ public class Universe extends JFrame implements ChangeListener {
             }
             //Change the default background color of all the Panels, ComboBoxes, CheckBoxes and the border of BasicSliderUI
             else if((value instanceof ColorUIResource) && 
+            		((key.toString() == "Panel.background") 
+            		|| (key.toString() == "Combobox.background")
+            		|| (key.toString() == "CheckBox.background")
+            		|| (key.toString() == "Slider.focus"))) {
+            	UIManager.put(key,  new ColorUIResource(defaultColor));
+            }
+          //For Mac
+            else if((valueString.contains("AquaImageFactory")) && 
             		((key.toString() == "Panel.background") 
             		|| (key.toString() == "Combobox.background")
             		|| (key.toString() == "CheckBox.background")
