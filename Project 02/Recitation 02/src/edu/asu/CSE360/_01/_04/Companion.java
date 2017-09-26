@@ -19,6 +19,7 @@ public class Companion extends JPanel implements Runnable
 	int state = 0;
 	private ImageIcon[] images;
 	float zoomLevel = 1.0f;
+	float zoomFactor = 0.25f;
 	boolean animate = true;
 	
 	public Companion() 
@@ -60,7 +61,6 @@ public class Companion extends JPanel implements Runnable
 	 */
 	@Override
 	public void run() {
-		float zoomFactor = 0.1f;
 		animate = true;
 		try {
 			while(animate) {
@@ -68,7 +68,7 @@ public class Companion extends JPanel implements Runnable
 				if(zoomLevel >= 2.0f || zoomLevel <= 1.0f)
 					zoomFactor *= -1;
 				lbl.setIcon(new ImageIcon(getScaledImage(this.getWidth(), this.getHeight())));
-				Thread.sleep(100);
+				Thread.sleep(1000);
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -87,6 +87,7 @@ public class Companion extends JPanel implements Runnable
 		lbl.setIcon(null);
 		lbl.setText(null);
 		zoomLevel = 1.0f;			//zoom level reset
+		zoomFactor = 0.25f;			//zoom factor reset
 		if(state > 0) {
 			ImageIcon imgIcon = new ImageIcon(getScaledImage(this.getWidth(), this.getHeight()));
 			if(imgIcon != null && imgIcon.getIconWidth() > 0)
