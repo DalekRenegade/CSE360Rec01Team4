@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<Document>
+    <Question id="1" Category="JComboBox">
+        <QText>Who was The Beatles' original drummer?</QText>
+        <Option id="1">Jimmie Nicole</Option>
+        <Option id="2">Pete Best</Option>
+        <Option id="3">Brian Epstein</Option>
+        <Option id="4">Stuart Sutcliffe</Option>
+        <Answer id="1">Pete Best</Answer>
+    </Question>
+    <Question id="2" Category = "JRadioButton">
+        <QText>Who was the inspiration for the song "Hey Jude"?</QText>
+        <Option id="1">Marilyn Monroe</Option>
+        <Option id="2">Jewish Holocaust</Option>
+        <Option id="3">Julian Lennon</Option>
+        <Option id="4">Charles Manson</Option>
+        <Answer id="2">Julian Lennon,Charles Manson</Answer>
+    </Question>
+    <Question id="3" Category = "JButton">
+        <QText>Where was song "Baby, You're a Rich Man" recorded?</QText>
+        <Option id="1">Trident Studios</Option>
+        <Option id="2">Abbey Road Studios</Option>
+        <Option id="3">Olympic Sound Studios</Option>
+        <Option id="4">John Lennon's home studio</Option>
+        <Answer id="3">Olympic Sound Studios</Answer>
+    </Question>
+    <Question id="4" Category="JTextArea">
+        <QText>Eric Clapton played lead guitar on _________ (Spelling counts)</QText>
+        <Answer id="4">While My Guitar Gently Weeps</Answer>
+    </Question>
+        
+</Document>
