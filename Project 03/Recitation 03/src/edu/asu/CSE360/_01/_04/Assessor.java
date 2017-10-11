@@ -164,7 +164,7 @@ public class Assessor extends JPanel {
 		txtInput.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				userAnswer[3] = txtInput.getText();
+				userAnswer[3] = txtInput.getText().trim().replaceAll(" +", " ");
 				displayDialog(userAnswer[3].equalsIgnoreCase(answer[3]));
 			}
 		});
