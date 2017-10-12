@@ -1,16 +1,14 @@
 /**
- * Assessor class - assesses the user based on the learning from Tutor
- * Presents 4 quiz in 4 ways of accepting answer(s) - drop down list, check boxes, buttons, text field
- * Reads the questions, options and answer from a XML file present in the resources folder
- * Responds to user's actions and checks the correctness of the answer selected by the user
- * Updates the Question Progress Report
- * Keeps track of the time taken to answer each question by the user
- * Recitation Project # 03
- * Recitation Group #01 Team #04
- * Completion Time = 10 + 1 + 4 = 15 hours 
- * @author David Edwards, [Additional - Amit Ranjan]
- * @version 1.3
- */
+*this is the Assessor class
+*it displays the input options for the user
+*requirement implemented: Verifies answer and displays 
+*appropriate dialog. Also allows user to choose when to 
+*start the quiz.
+*Completion time: 14 hours
+*
+*@author David Edwards, Amit Ranjan
+*@Version 2.0
+*/
 
 package Project03;
 
