@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<Document>
+    <Question id="1" Category="JComboBox">
+        <QText>Solve: x + y + z = 10, x - 2y + 3z = 5, 3x - 4y - 5z = -7</QText>
+        <Option id="1">x = 5, y = 5, z = 0</Option>
+        <Option id="2">x = 5, y = -5, z = 10</Option>
+        <Option id="3">x = 3, y = 2, z = 5</Option>
+        <Option id="4">x = 5, y = 3, z = 2</Option>
+        <Answer id="1">x = 5, y = 3, z = 2</Answer>
+    </Question>
+    <Question id="2" Category = "JRadioButton">
+        <QText>Which of the following is(are) compound word(s):</QText>
+        <Option id="1">Tutoring</Option>
+        <Option id="2">Forget</Option>
+        <Option id="3">Information</Option>
+        <Option id="4">Alongside</Option>
+        <Answer id="2">Forget,Alongside</Answer>
+    </Question>
+    <Question id="3" Category = "JButton">
+        <QText>What is the decimal equivalent of binary '11000101'?</QText>
+        <Option id="1">190</Option>
+        <Option id="2">207</Option>
+        <Option id="3">197</Option>
+        <Option id="4">198</Option>
+        <Answer id="3">197</Answer>
+    </Question>
+    <Question id="4" Category="JTextArea">
+        <QText>What is the full form of ATP?</QText>
+        <Answer id="4">Adenosine Triphosphate</Answer>
+    </Question>
+    
+</Document>
