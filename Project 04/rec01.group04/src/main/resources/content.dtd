@@ -1,0 +1,10 @@
+<!ELEMENT Document (Question+)>
+<!ELEMENT Question (QText, Option*, Answer, Hint*)>
+  <!ATTLIST Question ISBN CDATA #REQUIRED>
+<!ELEMENT Option    (#PCDATA)>
+<!ELEMENT Option    (#PCDATA)>
+<!ELEMENT Option    (#PCDATA)>
+<!ELEMENT Option    (#PCDATA)>
+<!ELEMENT Answer    (#PCDATA)>
+<!ELEMENT Hint      (#PCDATA)>
+<!ELEMENT Hint      (#PCDATA)>

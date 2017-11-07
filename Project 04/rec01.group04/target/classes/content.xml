@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<Document>
+    <Question id="1" Category="JComboBox">
+        <QText>Solve: x + y + z = 10, x - 2y + 3z = 5, 3x - 4y - 5z = -7</QText>
+        <Option id="1">x = 5, y = 5, z = 0</Option>
+        <Option id="2">x = 5, y = -5, z = 10</Option>
+        <Option id="3">x = 3, y = 2, z = 5</Option>
+        <Option id="4">x = 5, y = 3, z = 2</Option>
+        <Hint id="1">Solve one equation in terms of x</Hint>
+        <Hint id="2">Solve another equation in terms of y and substite</Hint>
+        <Answer id="1">x = 5, y = 3, z = 2</Answer>
+        <QText>Solve: 10x + 10y + 10z = 100, 10x - 20y + 30z = 50, 30x - 40y -5z = -7</QText>
+        <Option id="1">x = 3, y = 8, z = 9</Option>
+        <Option id="2">x = 5, y = 3, z = 2</Option>
+        <Option id="3">x = -5, y = 6, z = 2</Option>
+        <Option id="4">x = 5, y = 3, z = -2</Option>
+        <Hint id="1">What does this problem have in common with the last one?</Hint>
+        <Hint id="2">Does multiplying an equation by 10 on both sides affect the equation?</Hint>
+        <Answer id="2">x = 5, y = 3, z = 2</Answer>
+    </Question>
+    <Question id="2" Category = "JRadioButton">
+        <QText>Which of the following is(are) compound word(s):</QText>
+        <Option id="1">Tutoring</Option>
+        <Option id="2">Forget</Option>
+        <Option id="3">Information</Option>
+        <Option id="4">Alongside</Option>
+        <Hint id="1">Which words can be broken into two separate words?</Hint>
+        <Hint id="2">How many words form "Alongside?"</Hint>
+        <Answer id="3">Forget,Alongside</Answer>
+        <QText>Which of the following are compound words?</QText>
+        <Option id="1">Canyon</Option>
+        <Option id="2">Earthquake</Option>
+        <Option id="3">Monsoon</Option>
+        <Option id="4">Cannon</Option>
+        <Hint id="1">Which words can be broken into two smaller words?</Hint>
+        <Hint id="2">What is the difference between a smaller word and a syllable?</Hint>
+        <Answer id="4">Earthquake</Answer>
+    </Question>
+    <Question id="3" Category = "JButton">
+        <QText>What is the decimal equivalent of binary '11000101'?</QText>
+        <Option id="1">190</Option>
+        <Option id="2">205</Option>
+        <Option id="3">197</Option>
+        <Option id="4">196</Option>
+        <Hint id="1">Which numbers can be eliminated by knowing 2^0 is 1?</Hint>
+        <Hint id="2">What is 101 in binary?</Hint>
+        <Answer id="5">197</Answer>
+        <QText>Which is the decimal equalivalent of a binary '100'</QText>
+        <Option id="1">100</Option>
+        <Option id="2">25</Option>
+        <Option id="3">4</Option>
+        <Option id="4">8</Option>
+        <Hint id="1">What power does each placeholder represent?</Hint>
+        <Hint id="2">What is the number being raised to that power?</Hint>
+        <Answer id="6">4</Answer>
+    </Question>
+    <Question id="4" Category = "JComboBox">
+            <QText>What is the mean of the set: {11,12,13,14,15,16,17}?</QText>
+            <Option id="1">7</Option>
+            <Option id="2">14</Option>
+            <Option id="3">15</Option>
+            <Option id="4">98</Option>
+            <Hint>What is the sum of the elements?</Hint>
+            <Hint>How many elements are in the set?</Hint>
+            <Answer id="5">14</Answer>
+        <QText>What is the mean of the set: {10,20,30,40}</QText>
+        <Option id="1">21</Option>
+        <Option id="2">35</Option>
+        <Option id="3">25</Option>
+        <Option id="4">15</Option>
+        <Hint id="1">What is the sum of the elements?</Hint>
+        <Hint id="2">What must you divide that sum by?</Hint>
+        <Answer id="5">25</Answer>
+    </Question>
+    <Question id="5" Category = "JButton">
+        <QText>Which of the following can help improve your health:</QText>
+        <Option id="1">Limiting processed food intake</Option>
+        <Option id="2">Sitting for more than 3 hours at a time</Option>
+        <Option id="3">Limiting soda intake</Option>
+        <Option id="4">Exercising for at least 30 minutes a day</Option>
+        <Hint id="1">How much sugar is needed for a healthy diet?</Hint>
+        <Hint id="2">Why is exercise good for you?</Hint>
+        <Answer id="6">Limiting processed food intake,Limiting soda intake,Exercising for at least 30 minutes a day</Answer>
+        <QText>Which of the following will not improve your health:</QText>
+        <Option id="1">Limiting processed food intake</Option>
+        <Option id="2">Sitting for more than hours at a time</Option>
+        <Option id="3">Limiting soda intake</Option>
+        <Option id="4">Exercising for at least 30 minutes a day</Option>
+        <Hint id="1">Sitting can lead to execessively low heart rate</Hint>
+        <Hint id="2">Soda and processed food have execessive amounts of carbs and sugar</Hint>
+        <Answer id="6">Sitting for more than hours at a time</Answer>
+    </Question>
+    <Question id="6" Category = "JButton">
+        <QText>What was the main cause(s) of the Great Depression in 1929?</QText>
+        <Option id="1">Traders refrained from selling stocks for 4 days</Option>
+        <Option id="2">Franking D. Roosevelt's passing of the New Deal program</Option>
+        <Option id="3">A sudden decrease of shares going into the market</Option>
+        <Option id="4">Traders sold 12.9 million shares of stock in one day</Option>
+        <Hint id="1">When did the New Deal program come to being?</Hint>
+        <Hint id="2">Why does selling stock reduce market value?</Hint>
+        <Answer id="7">Traders sold 12.9 millions of shares of stock in one day</Answer>
+        <QText>Why were the 1920s so successful?</QText>
+        <Option id="1">Over-saturated job market</Option>
+        <Option id="2">Lack of color options on the Ford Model-T</Option>
+        <Option id="3">Too much government involvement in the economy</Option>
+        <Option id="4">Household products being invented</Option>
+        <Hint id="1">Think of how people responded to new inventions</Hint>
+        <Hint id="2">The government was very loose with the free market</Hint>
+        <Answer id="6">number 2</Answer>
+    </Question>
+    <Question id="8" Category = "JTextArea">
+        <QText>Which subatomic particle is responsible for determining the type of element?</QText>
+        <Answer id="8">Proton</Answer>
+        <QText>The north pole is attracted to the...</QText>
+        <Hint id="1">Think about magnetics</Hint>
+        <Hint id="2">The answer is south</Hint>
+        <Answer id="9">south</Answer>
+    </Question>
+</Document>
