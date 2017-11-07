@@ -44,8 +44,8 @@
         <Option id="4">Exercising for at least 30 minutes a day</Option>
         <Answer id="6">Limiting processed food intake,Limiting soda intake,Exercising for at least 30 minutes a day</Answer>
     </Question>
-    <Question id="7" Category = "JButton">
-        <QText>What was the main cause of the Great Depression in 1929?</QText>
+    <Question id="7" Category = "JRadioButton">
+        <QText>What was the main cause(s) of the Great Depression in 1929?</QText>
         <Option id="1">Traders refrained from selling stocks for 4 days</Option>
         <Option id="2">Franking D. Roosevelt's passing of the New Deal program</Option>
         <Option id="3">A sudden decrease of shares going into the market</Option>
